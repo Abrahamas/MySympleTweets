@@ -8,23 +8,42 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 
 
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
 
-    </android.support.design.widget.AppBarLayout>
+        <android.support.v7.widget.Toolbar
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        app:popupTheme="@style/AppTheme.PopupOverlay" />
+        android:background="#00f"
+        app:popupTheme="@style/AppTheme.PopupOverlay">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="Home Timeline"
+                android:textColor="#ffffff"
+                android:textSize="35dp"/>
+
+            </RelativeLayout>
+
+            </android.support.v7.widget.Toolbar>
+
+</android.support.design.widget.AppBarLayout>
 
     <ListView
+        android:layout_below="@id/toolbar"
         android:id="@+id/lvTweets"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 
 </RelativeLayout>

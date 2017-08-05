@@ -41,9 +41,26 @@ public class TimelineActivity extends AppCompatActivity /*ActionBarActivity*/ {
         lvTweets.setAdapter(aTweets);
         client = TwitterApplication.getRestClient();
         populateTimeline();
-       // Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+
+        lvTweets.setOnScrollListener(new EndlessScrollListener() {
+            @Override
+            public boolean onLoadMore(int page, int totalItemsCount) {
+                // Triggered only when new data needs to be appended to the list
+                // Add whatever code is needed to append new items to your AdapterView
+                loadNextDataFromApi(page);
+                // or loadNextDataFromApi(totalItemsCount);
+                return true; // ONLY if more data is actually being loaded; false otherwise.
+            }
+    });
     }
+
+    private void loadNextDataFromApi(int page) {
+
+    }
+
 
     private void populateTimeline() {
         client.getHomeTimeline(new JsonHttpResponseHandler() {

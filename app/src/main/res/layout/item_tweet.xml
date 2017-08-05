@@ -8,26 +8,23 @@
 
     <ImageView
         android:id="@+id/ivProfileImage"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="11dp"
         app:srcCompat="@drawable/ic_launcher" />
 
     <TextView
         android:id="@+id/tvUserName"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/ivProfileImage"
-        android:layout_marginStart="11dp"
         android:layout_toEndOf="@+id/ivProfileImage"
         android:text="Billy" />
 
     <TextView
         android:id="@+id/tvBody"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/ivProfileImage"
         android:layout_alignStart="@+id/tvUserName"
