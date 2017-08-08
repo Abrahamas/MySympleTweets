@@ -1,9 +1,9 @@
 package com.codepath.apps.mysimpletweets;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -13,7 +13,7 @@ import android.view.View;
 import android.widget.ListView;
 
 import com.codepath.apps.mysimpletweets.models.Tweet;
-import com.loopj.android.http.BaseJsonHttpResponseHandler;
+import com.codepath.apps.mysimpletweets.models.User;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
 import org.json.JSONArray;
@@ -23,13 +23,14 @@ import java.util.ArrayList;
 
 import cz.msebera.android.httpclient.Header;
 
-public class TimelineActivity extends AppCompatActivity /*ActionBarActivity*/ {
+public class TimelineActivity extends AppCompatActivity  {
 
     private TwitterClient client;
     private ArrayList<Tweet> tweets;
     private TweetsArrayAdapter aTweets;
     private ListView lvTweets;
-
+    private SwipeRefreshLayout swipeContainer;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,21 +44,53 @@ public class TimelineActivity extends AppCompatActivity /*ActionBarActivity*/ {
         populateTimeline();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        setupSwitchRefreshLayout();
 
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
-        lvTweets.setOnScrollListener(new EndlessScrollListener() {
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onLoadMore(int page, int totalItemsCount) {
-                // Triggered only when new data needs to be appended to the list
-                // Add whatever code is needed to append new items to your AdapterView
-                loadNextDataFromApi(page);
-                // or loadNextDataFromApi(totalItemsCount);
-                return true; // ONLY if more data is actually being loaded; false otherwise.
+            public void onClick(View view) {
+                Intent i = new Intent(TimelineActivity.this, ComposeActivity.class);
+
+                startActivityForResult(i, 10);
+
             }
-    });
+
+
+        });
+
+
+        setupSwitchRefreshLayout();
+        lvTweets = (ListView) findViewById(R.id.lvTweets);
+
+
+        tweets = new ArrayList<>();
+        aTweets = new TweetsArrayAdapter(this, tweets);
+        lvTweets.setAdapter(aTweets);}
+
+
+
+
+
+    private void setupSwitchRefreshLayout() {
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                populateTimeline();
+            }
+        });
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+
+
     }
 
     private void loadNextDataFromApi(int page) {
+
 
     }
 
@@ -89,7 +122,7 @@ public class TimelineActivity extends AppCompatActivity /*ActionBarActivity*/ {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item){
+    public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_settings) {
             return true;
@@ -98,14 +131,5 @@ public class TimelineActivity extends AppCompatActivity /*ActionBarActivity*/ {
 
 
 
-      /*  FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();*/
-            }
-
-
-
+    }
 }

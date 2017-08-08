@@ -13,7 +13,7 @@ import java.util.Locale;
 public class ParseRelativeDate {
 
     // getRelativeTimeAgo("Mon Apr 01 21:16:23 +0000 2014");
-    public String getRelativeTimeAgo(String rawJsonDate) {
+    public static String getRelativeTimeAgo(String rawJsonDate) {
         String twitterFormat = "EEE MMM dd HH:mm:ss ZZZZZ yyyy";
         SimpleDateFormat sf = new SimpleDateFormat(twitterFormat, Locale.ENGLISH);
         sf.setLenient(true);

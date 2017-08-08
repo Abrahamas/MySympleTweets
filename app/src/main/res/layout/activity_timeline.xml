@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,43 +8,32 @@ xmlns:android="http://schemas.android.com/apk/res/android"
     tools:context="com.codepath.apps.mysimpletweets.TimelineActivity">
 
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
-
         <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="#00f"
+            >
 
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="#00f"
-        app:popupTheme="@style/AppTheme.PopupOverlay">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
+        </android.support.v7.widget.Toolbar >
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:text="Home Timeline"
-                android:textColor="#ffffff"
-                android:textSize="35dp"/>
 
-            </RelativeLayout>
+    <include layout="@layout/content_timeline" />
 
-            </android.support.v7.widget.Toolbar>
 
-</android.support.design.widget.AppBarLayout>
 
-    <ListView
-        android:layout_below="@id/toolbar"
-        android:id="@+id/lvTweets"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+
+    <android.support.design.widget.FloatingActionButton android:id="@+id/fab"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginLeft="@dimen/fab_margin"
+        android:layout_marginRight="@dimen/fab_margin"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
+
+
 
 
 </RelativeLayout>
+
